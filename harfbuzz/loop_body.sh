@@ -31,7 +31,7 @@ J=$(grep CPU /proc/cpuinfo | wc -l )
 L=$(date +%Y-%m-%d-%H-%M-%S.log)
 echo =========== STARTING $L ==========================
 echo =========== PULL libFuzzer && (cd Fuzzer; svn up)
-echo =========== PULL HarBuzz   && (cd harfbuzz; git pull)
+echo =========== PULL HarfBuzz   && (cd harfbuzz; git pull)
 echo =========== SYNC CORPORA and BUILD
 mkdir -p CORPORA/ARTIFACTS
 # These go in parallel.
