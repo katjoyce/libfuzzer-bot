@@ -16,4 +16,4 @@ make -j
 ln -sf $HOME/llvm/lib/Fuzzer .
 for f in Fuzzer/*cpp; do clang++ -std=c++11 -c $f -IFuzzer & done
 wait
-clang++ libfuzzer-bot/pcre/pcre_fuzzer.cc -I${NAME}/src -g $SAN $COV -Wl,--whole-archive  asan/.libs/*.a -Wl,-no-whole-archive Fuzzer*.o -o pcre_${NAME}_fuzzer
+clang++ libfuzzer-bot/pcre/pcre_fuzzer.cc -I${NAME}/src -g $SAN $COV -Wl,--whole-archive  ${NAME}/.libs/*.a -Wl,-no-whole-archive Fuzzer*.o -o pcre_${NAME}_fuzzer
