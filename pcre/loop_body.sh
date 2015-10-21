@@ -33,7 +33,7 @@ echo =========== STARTING $L ==========================
 echo =========== PULL libFuzzer && (cd Fuzzer; svn up)
 echo =========== PULL pcre   && (cd pcre; svn up)
 echo =========== SYNC CORPORA and BUILD
-mkdir -p CORPORA/ARTIFACTS
+mkdir -p CORPORA/ARTIFACTS $CORPUS
 # These go in parallel.
 (gsutil -m rsync -r $BUCKET/CORPORA CORPORA; gsutil -m rsync -r CORPORA $BUCKET/CORPORA) &
 $P/build.sh asan_cov -fsanitize=address -fsanitize-coverage=edge,8bit-counters > asan_cov_build.log 2>&1 &
