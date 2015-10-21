@@ -23,8 +23,8 @@ dump_coverage() {
 
 BUCKET=gs://re-fuzzing-corpora
 CORPUS=CORPORA/C1
-MAX_LEN=24
-MAX_TOTAL_TIME=600
+MAX_LEN=32
+MAX_TOTAL_TIME=1200
 export ASAN_OPTIONS=quarantine_size_mb=10 # Make asan less memory-hungry.
 J=$(grep CPU /proc/cpuinfo | wc -l )
 
