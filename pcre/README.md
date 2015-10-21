@@ -1,7 +1,7 @@
-This page describes an [experimental fuzzer bot](http://108.59.87.155/) for [PCRE2](pcre.org).
+This page describes an [experimental fuzzer bot](http://108.59.87.155/) for [PCRE2](http://pcre.org).
 
-The bot uses [libFuzzer](llvm.org/docs/LibFuzzer.html) and
-[AddressSanitizer](clang.llvm.org/docs/AddressSanitizer.html) to find existing
+The bot uses [libFuzzer](http://llvm.org/docs/LibFuzzer.html) and
+[AddressSanitizer](http://clang.llvm.org/docs/AddressSanitizer.html) to find existing
 bugs in PCRE2 and possible new regressions. Currently, the [target
 function](./pcre_fuzzer.cc) is *very* simple, we'll be extending it in future.
 
