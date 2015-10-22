@@ -11,7 +11,9 @@ COV=$3  # E.g. -fsanitize-coverage=edge,8bit-counters
   cp -rf freetype2 $NAME
   cd $NAME
   ./autogen.sh
-  CC="clang  $SAN $COV"   ./configure
+  # harfbuzz is disabled due to
+  # https://savannah.nongnu.org/bugs/?func=detailitem&item_id=46254
+  CC="clang  $SAN $COV"   ./configure --with-harfbuzz=no
   make -j
 )
 
