@@ -21,7 +21,8 @@ echo =========== PULL FreeType
 echo =========== CONFIGURE
 SAN=-fsanitize=address #,signed-integer-overflow,shift
 COV=-fsanitize-coverage=edge,8bit-counters
-CC="clang  $SAN $COV"   ../freetype2/configure > /dev/null 
+DEF=-DTT_CONFIG_OPTION_MAX_RUNNABLE_OPCODES=10000
+CC="clang  $SAN $COV $DEF"   ../freetype2/configure > /dev/null
 
 echo =========== MAKE
 make -j > /dev/null
