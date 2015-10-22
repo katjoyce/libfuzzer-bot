@@ -38,7 +38,7 @@ echo =========== PULL target   && (cd $TARGET_NAME; git pull)
 echo =========== SYNC CORPORA and BUILD
 mkdir -p CORPORA/ARTIFACTS $CORPUS
 # These go in parallel.
-#(gsutil -m rsync -r $BUCKET/CORPORA CORPORA; gsutil -m rsync -r CORPORA $BUCKET/CORPORA) &
+(gsutil -m rsync -r $BUCKET/CORPORA CORPORA; gsutil -m rsync -r CORPORA $BUCKET/CORPORA) &
 $P/build.sh asan_cov -fsanitize=address -fsanitize-coverage=edge,8bit-counters > asan_cov_build.log 2>&1 &
 $P/build.sh func -fsanitize=shift -fsanitize-coverage=func > func_build.log 2>&1 &
 wait
@@ -57,8 +57,8 @@ rm -f *sancov
 UBSAN_OPTIONS=coverage=1 ./${TARGET_NAME}_func_fuzzer -max_len=$MAX_LEN $CORPUS -runs=0 > func_run.log 2>&1
 dump_coverage ${TARGET_NAME}_func_fuzzer >> $L
 echo =========== UPDATE WEB PAGE
-#sudo mv $L /var/www/html/$prefix-$L
-#mkindex
+sudo mv $L /var/www/html/$prefix-$L
+mkindex
 echo =========== DONE
 echo
 echo
