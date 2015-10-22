@@ -9,7 +9,8 @@ cd func_cov_dir
 export PATH=$HOME/llvm-build/bin:$PATH
 SAN=-fsanitize=shift  # Some minimal sanitizer
 COV=-fsanitize-coverage=func  # Only functions
-CC="clang  $SAN $COV"   ../freetype2/configure > /dev/null 
+DEF=-DTT_CONFIG_OPTION_MAX_RUNNABLE_OPCODES=10000  # Limit hinting time
+CC="clang  $SAN $COV $DEF"   ../freetype2/configure > /dev/null
 make -j > /dev/null
 clang++ -std=c++11  \
   ../freetype2/src/tools/ftfuzzer/ftfuzzer.cc \
