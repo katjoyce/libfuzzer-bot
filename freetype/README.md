@@ -7,8 +7,8 @@ using the Sanitizers
 ([asan](clang.llvm.org/docs/AddressSanitizer.html), 
 [msan](clang.llvm.org/docs/MemorySanitizer.html), ubsan, etc)
 and [libFuzzer](llvm.org/docs/LibFuzzer.html).
-Earlier, [20+ bugs](https://savannah.nongnu.org/search/?words=LibFuzzer&type_of_search=bugs&Search=Search&exact=1#options)
-were found by running libFuzzer on a local machine.
+Over [45 bugs](https://savannah.nongnu.org/search/?type_of_search=bugs&words=LibFuzzer&max_rows=100#results)
+were found so far.
 
 Second, we want to use this bot to improve the tools (libFuzzer, Sanitizers, coverage, etc)
 based on the feedback which we hope to get from the FreeType developers.
