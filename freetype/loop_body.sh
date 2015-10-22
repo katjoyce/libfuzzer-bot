@@ -24,7 +24,7 @@ dump_coverage() {
 BUCKET=gs://font-fuzzing-corpora
 CORPUS=CORPORA/C1
 MAX_LEN=20480
-MAX_TOTAL_TIME=600
+MAX_TOTAL_TIME=7200
 USE_COUNTERS=1
 TARGET_NAME=freetype2
 # Make asan less memory-hungry, strip paths.
