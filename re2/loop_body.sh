@@ -4,8 +4,8 @@
 P=$(cd $(dirname $0) && pwd)
 COMMON=$P/../common
 
-MAX_LEN=64
-MAX_TOTAL_TIME=6
+MAX_LEN=16
+MAX_TOTAL_TIME=60
 BUCKET=gs://re-fuzzing-corpora
 CORPUS=CORPORA/C1
 ARTIFACTS=CORPORA/ARTIFACTS
@@ -25,6 +25,6 @@ update_trunk() {
   fi
 }
 
-DRY_RUN=1
+DRY_RUN=0
 
 source $COMMON/loop_body.sh
