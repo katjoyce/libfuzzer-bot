@@ -2,6 +2,8 @@
 # Copyright 2015 Google Inc. All Rights Reserved.
 # Licensed under the Apache License, Version 2.0 (the "License");
 
+export PATH="$HOME/llvm-build/bin:$PATH"
+
 mkindex() {
   sudo mv $1 /var/www/html/$prefix-$1
   (cd /var/www/html/; sudo $P/../common/mkindex.sh index.html *log)
