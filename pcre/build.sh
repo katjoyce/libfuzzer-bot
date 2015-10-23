@@ -10,7 +10,7 @@ rm -rf $NAME
 cp -rf pcre $NAME
 cd $NAME
 ./autogen.sh
-CXX="clang++ $SAN $COV" CC="clang -g $SAN $COV" CCLD="clang++ $SAN $COV" ./configure --enable-static --disable-shared
+CXX="clang++ $SAN $COV" CC="clang -g $SAN $COV" CCLD="clang++ $SAN $COV" ./configure --enable-never-backslash-C --with-match-limit=1000 --with-match-limit-recursion=1000
 make -j
 )
 ln -sf $HOME/llvm/lib/Fuzzer .
