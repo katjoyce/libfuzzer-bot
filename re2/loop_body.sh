@@ -4,8 +4,8 @@
 P=$(cd $(dirname $0) && pwd)
 COMMON=$P/../common
 
-MAX_LEN=16
-MAX_TOTAL_TIME=60
+MAX_LEN=32
+MAX_TOTAL_TIME=1200
 BUCKET=gs://re-fuzzing-corpora
 CORPUS=CORPORA/C1
 ARTIFACTS=CORPORA/ARTIFACTS
