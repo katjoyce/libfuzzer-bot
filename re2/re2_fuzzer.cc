@@ -29,6 +29,7 @@ void Test(const string &str, const string &pat, const RE2::Options &opt) {
     RE2::Replace(&tmp1, re, "zz");
     string tmp2(str);
     RE2::GlobalReplace(&tmp2, re, "xx");
+    RE2::QuoteMeta(re2::StringPiece(pat));
   }
 }
 
