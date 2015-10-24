@@ -12,6 +12,7 @@ void Test(const string &str, const string &pat, const RE2::Options &opt) {
   if (re.ok()) {
     string m1, m2, m3, m4;
     int i1, i2, i3;
+    double d1;
     if (re.NumberOfCapturingGroups() == 0) {
       RE2::FullMatch(str, re);
       RE2::PartialMatch(str, re);
@@ -24,7 +25,7 @@ void Test(const string &str, const string &pat, const RE2::Options &opt) {
     }
     re2::StringPiece input(str);
     RE2::Consume(&input, re, &m1);
-    RE2::FindAndConsume(&input, re, &i1);
+    RE2::FindAndConsume(&input, re, &d1);
     string tmp1(str);
     RE2::Replace(&tmp1, re, "zz");
     string tmp2(str);
