@@ -3,18 +3,20 @@
 
 #include <string>
 #include "re2/re2.h"
+#include "util/logging.h"
 
 using std::string;
 
 extern "C" int LLVMFuzzerTestOneInput(const unsigned char *data, size_t size) {
   if (size < 1) return 0;
+  re2::FLAGS_minloglevel = 3;
   RE2::Options opt;
   opt.set_log_errors(false);
   string str(reinterpret_cast<const char*>(data), size);
   string pat(str);
   RE2 re(pat, opt);
-//  if (re.ok()) {
-//    RE2::FullMatch(str, re);
-//  }
+  if (re.ok()) {
+    RE2::FullMatch(str, re);
+  }
   return 0;
 }
