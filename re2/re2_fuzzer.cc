@@ -30,9 +30,10 @@ extern "C" int LLVMFuzzerTestOneInput(const unsigned char *data, size_t size) {
   string pat(str);
   RE2 re(pat, opt);
   if (re.ok()) {
-    string m;
+    string m1, m2, m3, m4;
     RE2::FullMatch(str, re);
-    RE2::PartialMatch(str, re, &m);
+    RE2::PartialMatch(str, re);
+    RE2::PartialMatch(str, re, &m1, &m2, &m3, &m4);
   }
   return 0;
 }
