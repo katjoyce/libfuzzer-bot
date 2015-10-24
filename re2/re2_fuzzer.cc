@@ -25,6 +25,10 @@ void Test(const string &str, const string &pat, const RE2::Options &opt) {
     re2::StringPiece input(str);
     RE2::Consume(&input, re, &m1);
     RE2::FindAndConsume(&input, re, &i1);
+    string tmp1(str);
+    RE2::Replace(&tmp1, re, "zz");
+    string tmp2(str);
+    RE2::GlobalReplace(&tmp2, re, "xx");
   }
 }
 
