@@ -7,6 +7,28 @@
 
 using std::string;
 
+void Test(const string &str, const string &pat, const RE2::Options &opt) {
+  RE2 re(pat, opt);
+  if (re.ok()) {
+    string m1, m2, m3, m4;
+    int i1, i2, i3;
+    if (re.NumberOfCapturingGroups() == 0) {
+      RE2::FullMatch(str, re);
+      RE2::PartialMatch(str, re);
+    } else if (re.NumberOfCapturingGroups() == 1) {
+      RE2::FullMatch(str, re, &m1);
+      RE2::PartialMatch(str, re, &i1);
+    } else if (re.NumberOfCapturingGroups() == 2) {
+      RE2::FullMatch(str, re, &i1, &i2);
+      RE2::PartialMatch(str, re, &m1, &m2);
+    }
+    re2::StringPiece input(str);
+    RE2::Consume(&input, re, &m1);
+    RE2::FindAndConsume(&input, re, &i1);
+  }
+}
+
+
 extern "C" int LLVMFuzzerTestOneInput(const unsigned char *data, size_t size) {
   if (size < 1) return 0;
   re2::FLAGS_minloglevel = 3;
@@ -26,25 +48,16 @@ extern "C" int LLVMFuzzerTestOneInput(const unsigned char *data, size_t size) {
   opt.set_one_line(f & 1024);
 
   opt.set_log_errors(false);
-  string str(reinterpret_cast<const char*>(data), size);
-  string pat(str);
-  RE2 re(pat, opt);
-  if (re.ok()) {
-    string m1, m2, m3, m4;
-    int i1, i2, i3;
-    if (re.NumberOfCapturingGroups() == 0) {
-      RE2::FullMatch(str, re);
-      RE2::PartialMatch(str, re);
-    } else if (re.NumberOfCapturingGroups() == 1) {
-      RE2::FullMatch(str, re, &m1);
-      RE2::PartialMatch(str, re, &i1);
-    } else if (re.NumberOfCapturingGroups() == 2) {
-      RE2::FullMatch(str, re, &i1, &i2);
-      RE2::PartialMatch(str, re, &m1, &m2);
-    }
-    re2::StringPiece input(str);
-    RE2::Consume(&input, re, &m1);
-    RE2::FindAndConsume(&input, re, &i1);
+  const char *beg = reinterpret_cast<const char*>(data);
+  {
+    string pat(beg, size);
+    string str(beg, size);
+    Test(str, pat, opt);
+  }
+  if (size >= 3) {
+    string pat(beg, size / 3);
+    string str(beg + size / 3, size - size / 3);
+    Test(str, pat, opt);
   }
   return 0;
 }
