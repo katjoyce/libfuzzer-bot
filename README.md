@@ -14,5 +14,7 @@ See subdirs for project-specific files and docs:
 
 * [freetype](./freetype/README.md)
 * [harfbuzz](./harfbuzz/README.md)
+* [pcre](./pcre/README.md)
+* [re2](./re2/README.md)
 
 
