@@ -42,7 +42,7 @@ wait
 echo =========== FUZZING
 ./${TARGET_NAME}_san_cov_fuzzer \
   -max_len=$MAX_LEN $CORPUS  -artifact_prefix=$ARTIFACTS/ -jobs=$J \
-  -workers=$J -max_total_time=$MAX_TOTAL_TIME -use_counters=$USE_COUNTERS > $L 2>&1
+  -workers=$J -max_total_time=$MAX_TOTAL_TIME -use_counters=$USE_COUNTERS $LIBFUZZER_EXTRA_FLAGS > $L 2>&1
 exit_code=$?
 case $exit_code in
   0) prefix=pass
