@@ -5,15 +5,15 @@ P=$(cd $(dirname $0) && pwd)
 COMMON=$P/../common
 
 MAX_LEN=32
-MAX_TOTAL_TIME=1200
+MAX_TOTAL_TIME=3600
 BUCKET=gs://re-fuzzing-corpora
 CORPUS=CORPORA/C1
 ARTIFACTS=CORPORA/ARTIFACTS
 BUILD_SH=$P/build.sh
 
 SAN=-fsanitize=address
-COV=-fsanitize-coverage=edge
-USE_COUNTERS=0
+COV=-fsanitize-coverage=edge,8bit-counters
+USE_COUNTERS=1
 
 TARGET_NAME=re2
 
