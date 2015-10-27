@@ -12,7 +12,6 @@ extern "C" int LLVMFuzzerTestOneInput(const unsigned char *data, size_t size) {
   string str(reinterpret_cast<const char*>(data), size);
   string pat(str);
   int flags = data[size/2] - 'a';  // Make it 0 when the byte is 'a'.
-  flags &= ~REG_NOSUB;  // https://bugs.exim.org/show_bug.cgi?id=1704
   if (0 == regcomp(&preg, pat.c_str(), flags)) {
     regmatch_t pmatch[5];
     regexec(&preg, str.c_str(), 5, pmatch, 0);
