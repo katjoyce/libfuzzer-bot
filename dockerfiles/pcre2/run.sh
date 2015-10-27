@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd /src/pcre2
+cd /work/pcre2
 ./pcre2_fuzzer $FUZZER_OPTIONS

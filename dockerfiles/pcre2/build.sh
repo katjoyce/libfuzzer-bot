@@ -11,5 +11,7 @@ fi
 ./configure
 make -j 16
 
-$CXX $CXXFLAGS pcre2_fuzzer.cc /work/libfuzzer/*.o -o pcre2_fuzzer \
-  -std=c++11 -I src
+mkdir -p /work/pcre2
+cd /work/pcre2
+$CXX $CXXFLAGS /src/pcre2/pcre2_fuzzer.cc /work/libfuzzer/*.o -o pcre2_fuzzer \
+  -std=c++11 -I/src/pcre2/src
