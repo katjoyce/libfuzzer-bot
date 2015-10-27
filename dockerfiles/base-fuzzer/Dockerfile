@@ -17,8 +17,11 @@ ENV FUZZER_OPTIONS="-use_traces=1 -max_total_time=120"
 #                arguments for docker run to enable it.
 # quarantine_size_mb - make asan less memory hungry
 ENV ASAN_OPTIONS="detect_leaks=0:quarantine_size_mb=10:symbolize=1:abort_on_error=1:handle_abort=1"
+ENV PATH="/src/scripts:$PATH"
 
 WORKDIR /src/scripts/
-CMD bash $BASH_FLAGS /src/scripts/driver.sh
+CMD bash $BASH_FLAGS /src/scripts/all
 
-ADD driver.sh /src/scripts/
+ADD all /src/scripts/
+ADD benchmark /src/scripts/
+ADD build /src/scripts/

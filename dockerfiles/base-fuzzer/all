@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. build
+
+echo ========== RUNNING FUZZER ==========
+bash $BASH_FLAGS /src/scripts/run.sh $FUZZER_OPTIONS
