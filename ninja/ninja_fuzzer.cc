@@ -14,7 +14,7 @@ struct MockFileReader : public ManifestParser::FileReader {
       : data_(data), size_(size) {}
 
   virtual bool ReadFile(const string& path, string* content, string* err) {
-    content->assign(reinterpret_cast<const char*>(data), size);
+    content->assign(reinterpret_cast<const char*>(data_), size_);
     return true;
   }
 
