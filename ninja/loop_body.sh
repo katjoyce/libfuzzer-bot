@@ -25,6 +25,6 @@ update_trunk() {
   fi
 }
 
-DRY_RUN=1
+DRY_RUN=0
 
 source $COMMON/loop_body.sh
