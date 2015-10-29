@@ -15,6 +15,9 @@ struct MockFileReader : public ManifestParser::FileReader {
 
   virtual bool ReadFile(const string& path, string* content, string* err) {
     content->assign(reinterpret_cast<const char*>(data_), size_);
+    // Only return data for the main manifest, else every include leads
+    // to an infinite include stack.
+    size_ = 0;
     return true;
   }
 
