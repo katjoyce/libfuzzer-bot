@@ -6,7 +6,7 @@ COMMON=$P/../common
 
 MAX_LEN=32
 MAX_TOTAL_TIME=30
-BUCKET=gs://re-fuzzing-corpora
+BUCKET=gs://ninja-build-fuzzing-corpora
 CORPUS=CORPORA/C1
 ARTIFACTS=CORPORA/ARTIFACTS
 BUILD_SH=$P/build.sh
