@@ -4,8 +4,8 @@
 P=$(cd $(dirname $0) && pwd)
 COMMON=$P/../common
 
-MAX_LEN=32
-MAX_TOTAL_TIME=30
+MAX_LEN=256
+MAX_TOTAL_TIME=300
 BUCKET=gs://ninja-build-fuzzing-corpora
 CORPUS=CORPORA/C1
 ARTIFACTS=CORPORA/ARTIFACTS
