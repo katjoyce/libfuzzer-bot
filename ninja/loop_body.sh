@@ -4,7 +4,7 @@
 P=$(cd $(dirname $0) && pwd)
 COMMON=$P/../common
 
-MAX_LEN=128
+MAX_LEN=256
 MAX_TOTAL_TIME=300
 BUCKET=gs://ninja-build-fuzzing-corpora
 CORPUS=CORPORA/C1
@@ -12,7 +12,7 @@ ARTIFACTS=CORPORA/ARTIFACTS
 BUILD_SH=$P/build.sh
 
 SAN=-fsanitize=address
-COV=-fsanitize-coverage=edge,8bit-counters
+COV=-fsanitize-coverage=edge,8bit-counters,trace-cmp
 USE_COUNTERS=1
 ASAN_OPTIONS=detect_leaks=0
 
