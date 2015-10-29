@@ -14,6 +14,7 @@ BUILD_SH=$P/build.sh
 SAN=-fsanitize=address
 COV=-fsanitize-coverage=edge,8bit-counters
 USE_COUNTERS=1
+ASAN_OPTIONS=detect_leaks=0
 
 TARGET_NAME=ninja
 
