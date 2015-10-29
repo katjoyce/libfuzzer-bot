@@ -34,8 +34,8 @@ extern "C" int LLVMFuzzerTestOneInput(const unsigned char *data, size_t size) {
   State state;
 
   // Make dupe edges errors not warnings.  That way they go into |err| below
-  // instead of stderr -- writing to stderr slows down fuzzing.
-  ManifestParser parser(&state, &file_reader, /*dupe_edge_should_err_=*/true);
+  // instead of to stderr -- writing to stderr slows down fuzzing.
+  ManifestParser parser(&state, &file_reader, /*dupe_edge_should_err=*/true);
 
   string err;
   parser.Load("foo.ninja", &err);
