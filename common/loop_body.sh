@@ -21,8 +21,8 @@ dump_coverage() {
     sort --field-separator=: --key=1,1 --key=2n,2 --key=3n,3 | cat -n
 }
 
-# Make asan less memory-hungry, strip paths.
-export ASAN_OPTIONS=quarantine_size_mb=10:strip_path_prefix=$HOME/:$ASAN_OPTIONS
+# Make asan less memory-hungry, strip paths, intercept abort().
+export ASAN_OPTIONS=quarantine_size_mb=10:strip_path_prefix=$HOME/:handle_abort=1:$ASAN_OPTIONS
 J=$(grep CPU /proc/cpuinfo | wc -l )
 
 L=$(date +%Y-%m-%d-%H-%M-%S.log)
