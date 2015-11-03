@@ -24,4 +24,4 @@ wait
 clang++ -std=c++11  $NAME/src/tools/ftfuzzer/ftfuzzer.cc \
   $SAN $COV \
   *.o -I $NAME/include -I . ${NAME}/objs/.libs/libfreetype.a  \
-  -lbz2 -lz -lpng -lharfbuzz  -o freetype2_${NAME}_fuzzer
+  -lbz2 -lz -lpng -lharfbuzz -larchive -o freetype2_${NAME}_fuzzer
