@@ -23,7 +23,7 @@ _DEBUGGER_INPUT = ("break __asan_report_error\n"
 _GDB_DISCARD_RE = re.compile("^Starting program:\s+.*?\n")
 _GDB_ERROR_RE = re.compile("Program received signal (?P<signal>SIG[A-Z]+)")
 _GDB_STRIPPED_RE = re.compile("WARNING: no debugging symbols found")
-_GDB_STACK_FRAME_RE = re.compile("#(?P<no>\d+)\s+0x[0-9a-z]+\s+"
+_GDB_STACK_FRAME_RE = re.compile("#\d+\s+0x[0-9a-z]+\s+"
                                  "in\s+(?P<func>\S+)\s*\([^)]*\)\s+"
                                  "at\s+(?P<fname>[^:]+):(?P<lnum>\d+)")
 
@@ -37,15 +37,9 @@ class GDBOut(object):
         self.cont_out = raw_gdb_output[4]
 
 
-def _normalize_frame_positions(frame_strings):
-    for i, frame in enumerate(frame_strings):
-        frame_strings[i] = (str(i),) + frame[1:]
-
-
 def _parse_stack_trace(trace_str):
     stack_tr = []
     frame_strings = _GDB_STACK_FRAME_RE.findall(trace_str)
-    _normalize_frame_positions(frame_strings)
     for frame in frame_strings:
         stack_tr.append(StackFrame(*frame))
     return StackTrace(stack_tr) if stack_tr else None

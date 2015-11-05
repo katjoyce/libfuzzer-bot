@@ -37,13 +37,17 @@ class StackTrace(object):
     """
     Attributes:
         frames: A list of StackFrame objects that make up this stack
-                      trace.
+                trace.
     """
     def __init__(self, frames):
         self.frames = frames
 
     def __str__(self):
-        return "\n".join([str(frame) for frame in self.frames])
+        return "\n".join([self.make_frame_str(index, frame)
+                          for index, frame in enumerate(self.frames)])
+
+    def make_frame_str(self, index, frame):
+        return "#{!s} {!s}".format(index, frame)
 
     def depth(self):
         """Returns the number of stack frames in the stack trace."""
@@ -54,18 +58,20 @@ class StackFrame(object):
     """A structure in which to store information about a stack frame.
 
     Attributes:
-        position: The position of this stack frame in
-                  the outer stack trace.
         function: The function name that this stack frame refers to.
         filename: The filename that this stack frame refers to.
         line_num: The line number that this stack frame refers to.
     """
-    def __init__(self, position, function, filename, line_num):
-        self.position = position
+    def __init__(self, function, filename, line_num):
         self.function = function
         self.filename = filename
         self.line_num = line_num
 
     def __str__(self):
-        return "#{!s} {!s}:{!s}: {!s}()".format(self.position, self.filename,
-                                                self.line_num, self.function)
+        return "{!s}:{!s}: {!s}()".format(self.filename,
+                                          self.line_num, self.function)
+
+    def __eq__(self, other):
+        return (self.function == other.function and
+                self.filename == other.filename and
+                self.line_num == other.line_num)
