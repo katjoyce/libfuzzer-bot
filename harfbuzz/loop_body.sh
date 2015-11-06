@@ -25,7 +25,7 @@ BUCKET=gs://font-fuzzing-corpora
 CORPUS=CORPORA/C1
 MAX_LEN=2048
 MAX_TOTAL_TIME=7200
-export ASAN_OPTIONS=quarantine_size_mb=10 # Make asan less memory-hungry.
+export ASAN_OPTIONS=quarantine_size_mb=10:strip_path_prefix=$HOME/:handle_abort=1:$ASAN_OPTIONS
 J=$(grep CPU /proc/cpuinfo | wc -l )
 
 L=$(date +%Y-%m-%d-%H-%M-%S.log)
