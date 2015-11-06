@@ -8,7 +8,7 @@ rm -rf $NAME
 cp -rf harfbuzz $NAME
 cd $NAME
 ./autogen.sh
-FLAGS="-DHB_MAX_NESTING_LEVEL=3 $SAN $COV -g"
+FLAGS="-DHB_MAX_NESTING_LEVEL=3 -DHB_BUFFER_MAX_EXPANSION_FACTOR=3 -DHB_BUFFER_MAX_LEN_MIN=8 $SAN $COV -g"
 CXX="clang++ $FLAGS"  CC="clang $FLAGS" CCLD="clang++ $FLAGS" ./configure --enable-static --disable-shared
 make -j
 )
