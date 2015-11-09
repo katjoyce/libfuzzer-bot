@@ -5,7 +5,6 @@ import subprocess
 import sys
 
 from crashreportclasses import CrashReport
-from crashreportclasses import StackTrace
 from crashreportclasses import StackFrame
 
 from gdbasan import detect_asan
@@ -42,7 +41,7 @@ def _parse_stack_trace(trace_str):
     frame_strings = _GDB_STACK_FRAME_RE.findall(trace_str)
     for frame in frame_strings:
         stack_tr.append(StackFrame(*frame))
-    return StackTrace(stack_tr) if stack_tr else None
+    return stack_tr if stack_tr else None
 
 
 def _parse_error(gdb_out):
