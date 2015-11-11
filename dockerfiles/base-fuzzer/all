@@ -3,4 +3,6 @@
 . build
 
 echo ========== RUNNING FUZZER ==========
-bash $BASH_FLAGS /src/scripts/run.sh $FUZZER_OPTIONS
+for F in $FUZZERS; do
+  $F $FUZZER_OPTIONS
+done

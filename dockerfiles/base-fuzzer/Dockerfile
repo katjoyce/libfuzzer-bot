@@ -2,8 +2,9 @@ FROM libfuzzer/base-clang
 
 MAINTAINER aizatsky@google.com
 
+RUN apt-get install -y gnuplot
+
 ONBUILD ADD build.sh /src/scripts/
-ONBUILD ADD run.sh /src/scripts/
 
 ENV SANITIZER_OPTIONS="-fsanitize=address"
 ENV COVERAGE_OPTIONS="-fsanitize-coverage=edge,indirect-calls,8bit-counters,trace-cmp"
@@ -25,3 +26,4 @@ CMD bash $BASH_FLAGS /src/scripts/all
 ADD all /src/scripts/
 ADD benchmark /src/scripts/
 ADD build /src/scripts/
+ADD plot.gp /src/scripts/
