@@ -77,6 +77,7 @@ for f in $fuzzers; do
   ./build/fuzz/$f -max_len=$(max_len $f) -jobs=$J -workers=$J\
     -max_total_time=$MAX_TOTAL_TIME CORPORA/$f boringssl/fuzz/${f}_corpus  >> $L
 done
+prefix=pass # TODO
 
 echo =========== UPDATE WEB PAGE
 if [ "$DRY_RUN" != "1" ]; then
