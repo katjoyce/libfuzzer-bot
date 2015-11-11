@@ -72,12 +72,18 @@ for f in $fuzzers; do
 done
 gsutil -m rsync -r $BUCKET/CORPORA CORPORA
 gsutil -m rsync -r CORPORA $BUCKET/CORPORA
+rm -f *.sancov
 for f in $fuzzers; do
   echo =========== FUZZING $f
   ./build/fuzz/$f -max_len=$(max_len $f) -jobs=$J -workers=$J\
     -max_total_time=$MAX_TOTAL_TIME CORPORA/$f boringssl/fuzz/${f}_corpus  >> $L 2>&1
 done
 prefix=pass # TODO
+
+for f in $fuzzers; do
+  echo ================== COVERED FUNCTIONS: $f
+  sancov  -covered_functions -obj build/fuzz/client client*sancov  >> $L
+done
 
 echo =========== UPDATE WEB PAGE
 if [ "$DRY_RUN" != "1" ]; then
