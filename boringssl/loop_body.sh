@@ -81,7 +81,7 @@ prefix=pass # TODO
 
 for f in $fuzzers; do
   echo ================== COVERED FUNCTIONS: $f >> $L
-  sancov  -covered_functions -obj build/fuzz/client client*sancov |  cat -n >> $L
+  sancov  -covered_functions -obj build/fuzz/$f $f.*.sancov |  cat -n >> $L
 done
 
 echo =========== UPDATE WEB PAGE
