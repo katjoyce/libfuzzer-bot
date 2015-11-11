@@ -1,4 +1,4 @@
-This page describes an [experimental fuzzer bot](http://108.59.87.155/) for [PCRE2](http://pcre.org).
+This page describes an [experimental fuzzer bot](http://104.197.61.218/) for [PCRE2](http://pcre.org).
 
 The bot uses [libFuzzer](http://llvm.org/docs/LibFuzzer.html) and
 [AddressSanitizer](http://clang.llvm.org/docs/AddressSanitizer.html) to find existing
