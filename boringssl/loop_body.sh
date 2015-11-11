@@ -25,7 +25,7 @@ build_fuzzers() {
   ar q libFuzzer.a *.o
   rm -rf build
   mkdir build
-  cp libFuzzer.a build
+  cp libFuzzer.a boringssl
   (cd build; CC=clang CXX=clang++ cmake -GNinja -DFUZZ=1 ../boringssl && ninja)
 }
 
