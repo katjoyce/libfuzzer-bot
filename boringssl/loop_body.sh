@@ -64,7 +64,7 @@ echo =========== BUILD && build_fuzzers
 echo =========== SYNC CORPORA and BUILD
 mkdir -p CORPORA/ARTIFACTS CORPORA/
 BUCKET=gs://ssl-fuzzing-corpora
-fuzzers=$(cd boringssl/fuzz/; ls *.cc | sed 's/\.cc$//g' | grep -v server)
+fuzzers=$(cd boringssl/fuzz/; ls *.cc | sed 's/\.cc$//g')
 mkdir -p CORPORA/ARTIFACTS
 for f in $fuzzers; do
   mkdir -p CORPORA/$f
