@@ -60,7 +60,7 @@ L=$(date +%Y-%m-%d-%H-%M-%S.log)
 echo =========== STARTING $L ==========================
 echo =========== PULL libFuzzer && (cd Fuzzer; svn up)
 echo =========== UPDATE TRUNK   && update_trunk
-#echo =========== BUILD && build_fuzzers
+echo =========== BUILD && build_fuzzers
 
 echo =========== SYNC CORPORA and BUILD
 mkdir -p CORPORA/ARTIFACTS CORPORA/
