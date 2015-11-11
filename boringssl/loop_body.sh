@@ -49,12 +49,11 @@ max_len() {
   esac
 }
 
-MAX_TOTAL_TIME=10
+MAX_TOTAL_TIME=300
 
 # Make asan less memory-hungry, strip paths, intercept abort(), no lsan.
 export ASAN_OPTIONS=coverage=1:quarantine_size_mb=10:strip_path_prefix=`pwd`/:handle_abort=1:detect_leaks=0
 J=$(grep CPU /proc/cpuinfo | wc -l)
-J=1
 
 L=$(date +%Y-%m-%d-%H-%M-%S.log)
 echo =========== STARTING $L ==========================
