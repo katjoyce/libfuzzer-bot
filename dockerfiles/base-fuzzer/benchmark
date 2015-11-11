@@ -1,7 +1,27 @@
 #!/bin/bash
+set -x
+
 
 . build
 
 echo ========== BENCHMARKING FUZZER ==========
-bash $BASH_FLAGS /src/scripts/run.sh $FUZZER_OPTIONS
+export OLD_FUZZER_OPTIONS=$FUZZER_OPTIONS
+export FUZZER_OPTIONS="$FUZZER_OPTIONS -output=gnuplot"
+
+cd /work
+
+for F in $FUZZERS; do
+  dat_files=()
+
+  for I in `seq 1 30`;
+  do
+    dir=`mktemp -d`
+    $F $FUZZER_OPTIONS &> "$dir/fuzzer.dat" &
+    dat_files+=("$dir/fuzzer.dat")
+  done
+  wait
+
+  echo $dat_files
+  gnuplot -e "filenames='${dat_files[*]}'" /src/scripts/plot.gp
+done
 

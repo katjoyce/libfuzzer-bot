@@ -17,5 +17,5 @@ make -j 16
 
 $CXX $CXXFLAGS -std=c++11 /src/freetype2/src/tools/ftfuzzer/ftfuzzer.cc \
   *.o /work/libfuzzer/*.o \
-  -I /src/freetype2/include -I . .libs/libfreetype.a  \
+  -larchive -I /src/freetype2/include -I . .libs/libfreetype.a  \
    -o freetype2_fuzzer

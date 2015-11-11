@@ -8,6 +8,8 @@ ADD fuzzer.cc /src/boringssl/
 ADD server.key /src/boringssl/
 ADD server.pem /src/boringssl/
 
+ENV FUZZERS "/work/boringssl/fuzzer"
+
 VOLUME /src/boringssl
 
 RUN mkdir -p /work/boringssl
